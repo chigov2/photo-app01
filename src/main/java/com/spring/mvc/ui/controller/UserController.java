@@ -1,5 +1,6 @@
 package com.spring.mvc.ui.controller;
 
+import com.spring.mvc.ui.controller.model.request.UserDetailRequestModel;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
