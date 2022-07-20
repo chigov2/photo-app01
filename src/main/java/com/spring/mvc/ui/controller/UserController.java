@@ -1,6 +1,7 @@
 package com.spring.mvc.ui.controller;
 
 import com.spring.mvc.ui.controller.model.request.UserDetailRequestModel;
+import com.spring.mvc.ui.controller.model.response.UserRest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,9 +14,9 @@ public class UserController {
     }
 
     @PostMapping
-    public  String createUser(@RequestBody UserDetailRequestModel userDetails){
+    public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
 
-        return "postUser was called: Create user";
+        return null;
     }
 
     @PutMapping
