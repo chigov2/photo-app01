@@ -12,7 +12,8 @@ public class UserController {
     }
 
     @PostMapping
-    public  String createUser(){
+    public  String createUser(@RequestBody UserDetailRequestModel userDetails){
+
         return "postUser was called: Create user";
     }
 
