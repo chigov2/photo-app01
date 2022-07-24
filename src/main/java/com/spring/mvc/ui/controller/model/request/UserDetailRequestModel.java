@@ -38,4 +38,13 @@ public class UserDetailRequestModel {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "UserDetailRequestModel{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
