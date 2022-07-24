@@ -1,12 +1,19 @@
 package com.spring.mvc.ui.controller;
 
+import com.spring.mvc.service.UserService;
+import com.spring.mvc.shared.dto.UserDto;
 import com.spring.mvc.ui.controller.model.request.UserDetailRequestModel;
 import com.spring.mvc.ui.controller.model.response.UserRest;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("users")
 public class UserController {
+
+    @Autowired
+    UserService userService;
 
     @GetMapping
     public String getUsers(){
@@ -16,7 +23,16 @@ public class UserController {
     @PostMapping
     public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
 
-        return null;
+        UserRest returnValue = new UserRest();
+
+        UserDto userDto = new UserDto();
+
+        BeanUtils.copyProperties(userDetails, userDto);
+
+        UserDto createUser = userService.createUser(userDto);
+        BeanUtils.copyProperties(createUser,returnValue);
+
+        return returnValue;
     }
 
     @PutMapping
