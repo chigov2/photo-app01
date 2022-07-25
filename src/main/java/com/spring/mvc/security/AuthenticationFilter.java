@@ -1,6 +1,7 @@
 package com.spring.mvc.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spring.mvc.SpringApplicationContext;
 import com.spring.mvc.service.UserService;
 import com.spring.mvc.shared.dto.UserDto;
 import com.spring.mvc.ui.controller.model.request.UserLoginRequestModel;
@@ -69,12 +70,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
                 .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET )
                 .compact();
-//        UserService userService = (UserService)SpringApplicationContext.getBean("userServiceImpl");
-//        UserDto userDto = userService.getUser(userName);
+        UserService userService = (UserService) SpringApplicationContext.getBean("userServiceImpl");
+        UserDto userDto = userService.getUser(userName);
 
 
         res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
-//        res.addHeader("UserID", userDto.getUserId());
+        res.addHeader("UserID", userDto.getUserId());
 
     }
 
