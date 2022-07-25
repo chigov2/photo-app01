@@ -1,6 +1,6 @@
 package com.spring.mvc.ui.controller.model.request;
 
-public class UderLoginRequestModel {
+public class UserLoginRequestModel {
     private String email;
     private String password;
 
