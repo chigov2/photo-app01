@@ -6,6 +6,7 @@ import com.spring.mvc.ui.controller.model.request.UserDetailRequestModel;
 import com.spring.mvc.ui.controller.model.response.UserRest;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +16,8 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}",
+            produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public UserRest getUserById(@PathVariable String id){
 
         UserRest returnValue = new UserRest() ;
