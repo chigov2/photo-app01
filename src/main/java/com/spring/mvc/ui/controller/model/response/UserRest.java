@@ -1,7 +1,7 @@
 package com.spring.mvc.ui.controller.model.response;
 
 public class UserRest {
-    private String userId;
+    private String userId;//public
     private String firstName;
     private String lastName;
     private String email;
