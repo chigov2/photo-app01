@@ -20,6 +20,13 @@ public class UserController {
         return "getUsers was called";
     }
 
+    @Override
+    public String toString() {
+        return "UserController{" +
+                "userService=" + userService +
+                '}';
+    }
+
     @PostMapping
     public UserRest createUser(@RequestBody UserDetailRequestModel userDetails){
 

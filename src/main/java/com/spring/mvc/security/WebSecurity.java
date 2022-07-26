@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.access.intercept.AuthorizationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -31,7 +30,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter{
         http.csrf().disable().authorizeRequests()
                 .antMatchers(HttpMethod.POST,SecurityConstants.SIGN_UP_URL)
                 .permitAll()
-                .anyRequest().authenticated().and().addFilter(getAuthenticationFilter());
+                .anyRequest()
+                .authenticated()
+                .and()
+                .addFilter(getAuthenticationFilter())
+                .addFilter(new AuthorizationFilter(authenticationManager()))
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override
